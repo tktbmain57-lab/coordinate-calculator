@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_medium">
+
+    <!-- Canvas Area -->
+    <jp.dev.tanaka.coordinatecalculator.ui.CoordinateCanvasView
+        android:id="@+id/canvas_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/background"
+        android:contentDescription="@string/cd_canvas"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35" />
+
+    <!-- Result Display -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/result_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/canvas_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <TextView
+                android:id="@+id/result_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/result_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textSize="@dimen/text_xlarge" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Input ScrollView -->
+    <ScrollView
+        android:id="@+id/input_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:layout_constraintTop_toBottomOf="@id/result_card"
+        app:layout_constraintBottom_toTopOf="@id/button_row"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Shape A Input -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/shape_a_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_medium">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shape_a"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold"
+                        android:textColor="@color/line_color" />
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/shape_a_type_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        app:singleSelection="true"
+                        app:selectionRequired="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_shape_a_line_2p"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/touch_target_min"
+                            android:layout_weight="1"
+                            android:text="@string/line_two_points"
+                            android:textSize="@dimen/text_small" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_shape_a_line_angle"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/touch_target_min"
+                            android:layout_weight="1"
+                            android:text="@string/line_point_angle"
+                            android:textSize="@dimen/text_small" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_shape_a_circle"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/touch_target_min"
+                            android:layout_weight="1"
+                            android:text="@string/circle"
+                            android:textSize="@dimen/text_small" />
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    <include
+                        android:id="@+id/shape_a_input"
+                        layout="@layout/input_shape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Shape B Input -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/shape_b_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_medium">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shape_b"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold"
+                        android:textColor="@color/circle_color" />
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/shape_b_type_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        app:singleSelection="true"
+                        app:selectionRequired="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_shape_b_line_2p"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/touch_target_min"
+                            android:layout_weight="1"
+                            android:text="@string/line_two_points"
+                            android:textSize="@dimen/text_small" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_shape_b_line_angle"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/touch_target_min"
+                            android:layout_weight="1"
+                            android:text="@string/line_point_angle"
+                            android:textSize="@dimen/text_small" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_shape_b_circle"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/touch_target_min"
+                            android:layout_weight="1"
+                            android:text="@string/circle"
+                            android:textSize="@dimen/text_small" />
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    <include
+                        android:id="@+id/shape_b_input"
+                        layout="@layout/input_shape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Button Row -->
+    <LinearLayout
+        android:id="@+id/button_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_clear"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:text="@string/clear" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_calculate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="2"
+            android:text="@string/calculate" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

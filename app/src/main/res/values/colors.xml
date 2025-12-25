@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1976D2</color>
+    <color name="primary_dark">#1565C0</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF5722</color>
+
+    <color name="line_color">#2196F3</color>
+    <color name="circle_color">#4CAF50</color>
+    <color name="intersection_color">#F44336</color>
+    <color name="grid_color">#E0E0E0</color>
+    <color name="axis_color">#9E9E9E</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B00020</color>
+</resources>

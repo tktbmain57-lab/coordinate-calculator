@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">交点座標計算</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="save">保存</string>
+    <string name="delete">削除</string>
+    <string name="clear">クリア</string>
+    <string name="calculate">計算</string>
+    <string name="settings">設定</string>
+    <string name="history">履歴</string>
+
+    <!-- Input -->
+    <string name="input_line">直線</string>
+    <string name="input_circle">円/円弧</string>
+    <string name="point1">点1</string>
+    <string name="point2">点2</string>
+    <string name="center">中心</string>
+    <string name="radius">半径 R</string>
+    <string name="angle">角度</string>
+    <string name="x_coord">X</string>
+    <string name="y_coord">Y</string>
+
+    <!-- Shape Selection -->
+    <string name="shape_a">図形A</string>
+    <string name="shape_b">図形B</string>
+    <string name="line_two_points">直線（2点指定）</string>
+    <string name="line_point_angle">直線（1点+角度）</string>
+    <string name="circle">円</string>
+
+    <!-- Result -->
+    <string name="result">計算結果</string>
+    <string name="intersection_point">交点</string>
+    <string name="no_intersection">交点なし</string>
+    <string name="parallel_lines">直線が平行です</string>
+    <string name="tangent_point">接点</string>
+    <string name="select_point">交点を選択してください</string>
+
+    <!-- History -->
+    <string name="history_empty">履歴がありません</string>
+    <string name="delete_history">履歴を削除</string>
+    <string name="delete_all_history">全履歴を削除</string>
+    <string name="delete_confirm">この履歴を削除しますか？</string>
+    <string name="delete_all_confirm">すべての履歴を削除しますか？</string>
+    <string name="title_hint">タイトル（任意）</string>
+    <string name="memo_hint">メモ（任意）</string>
+
+    <!-- Settings -->
+    <string name="decimal_places">小数点以下桁数</string>
+    <string name="decimal_1">1桁</string>
+    <string name="decimal_2">2桁</string>
+    <string name="decimal_3">3桁</string>
+
+    <!-- Errors -->
+    <string name="error_invalid_input">入力値が不正です</string>
+    <string name="error_same_points">2点が同一です</string>
+    <string name="error_zero_radius">半径は0より大きい値を入力してください</string>
+
+    <!-- Accessibility -->
+    <string name="cd_canvas">座標キャンバス</string>
+    <string name="cd_zoom_in">拡大</string>
+    <string name="cd_zoom_out">縮小</string>
+    <string name="cd_reset_view">表示リセット</string>
+</resources>
