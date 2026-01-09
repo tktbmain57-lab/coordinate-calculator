@@ -16,4 +16,6 @@
     <color name="background">#FAFAFA</color>
     <color name="surface">#FFFFFF</color>
     <color name="error">#B00020</color>
+
+    <color name="ic_launcher_background">#1976D2</color>
 </resources>

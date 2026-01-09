@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0"/>
+    <!-- Crosshair - horizontal line -->
+    <path
+        android:strokeColor="#1976D2"
+        android:strokeWidth="3"
+        android:pathData="M30,54 L78,54"/>
+    <!-- Crosshair - vertical line -->
+    <path
+        android:strokeColor="#1976D2"
+        android:strokeWidth="3"
+        android:pathData="M54,30 L54,78"/>
+    <!-- Circle arc -->
+    <path
+        android:strokeColor="#D32F2F"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M54,54m-18,0a18,18 0,1 1,36 0a18,18 0,1 1,-36 0"/>
+    <!-- Intersection point -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M72,54m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"/>
+</vector>
