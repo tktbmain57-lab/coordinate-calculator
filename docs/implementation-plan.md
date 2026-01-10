@@ -11,12 +11,12 @@
 ### Step 1: プロジェクト基盤の更新
 
 #### 1.1 アプリ名・パッケージの更新
-- [ ] アプリ名を「ツールパス座標計算」に変更
-- [ ] strings.xml のアプリ名更新
+- [x] アプリ名を「ツールパス座標計算」に変更
+- [x] strings.xml のアプリ名更新
 
 #### 1.2 ナビゲーション構造の変更
-- [ ] 現行: BottomNavigation (計算/履歴/設定)
-- [ ] 新規: シナリオベースのフロー型ナビゲーション
+- [x] 現行: BottomNavigation (計算/履歴/設定)
+- [x] 新規: シナリオベースのフロー型ナビゲーション
 
 ```
 nav_graph.xml の構成:
@@ -46,11 +46,11 @@ nav_graph.xml の構成:
 ```
 
 **実装内容**:
-- [ ] ScenarioSelectFragment.kt
-- [ ] fragment_scenario_select.xml
-- [ ] item_scenario_card.xml
-- [ ] ScenarioAdapter.kt
-- [ ] Scenario.kt (シナリオ定義のsealed class)
+- [x] ScenarioSelectFragment.kt
+- [x] fragment_scenario_select.xml
+- [x] item_scenario_card.xml
+- [x] ScenarioAdapter.kt
+- [x] Scenario.kt (シナリオ定義のsealed class)
 
 #### 2.2 向き選択画面 (DirectionSelectFragment)
 
@@ -68,11 +68,11 @@ nav_graph.xml の構成:
 ```
 
 **実装内容**:
-- [ ] DirectionSelectFragment.kt
-- [ ] fragment_direction_select.xml
-- [ ] item_direction_card.xml
-- [ ] CornerDirection.kt (enum: TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT)
-- [ ] カスタムDrawable (各方向のイラスト)
+- [x] DirectionSelectFragment.kt
+- [x] fragment_direction_select.xml
+- [x] item_direction_card.xml
+- [x] CornerDirection.kt (enum: TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT)
+- [x] カスタムDrawable (各方向のイラスト)
 
 #### 2.3 パラメータ入力画面 (ParameterInputFragment)
 
@@ -95,9 +95,9 @@ nav_graph.xml の構成:
 ```
 
 **実装内容**:
-- [ ] ParameterInputFragment.kt
-- [ ] fragment_parameter_input.xml
-- [ ] ChamferParameters.kt (入力パラメータのdata class)
+- [x] ParameterInputFragment.kt
+- [x] fragment_parameter_input.xml
+- [x] ChamferParameters.kt (入力パラメータのdata class)
 
 #### 2.4 結果表示画面 (ResultFragment)
 
@@ -106,7 +106,7 @@ nav_graph.xml の構成:
 ```xml
 <!-- fragment_result.xml -->
 - ToolBar (戻るボタン、保存メニュー)
-- 結果キャンバス (CoordinateCanvasView を改良)
+- 結果キャンバス (ChamferCanvasView)
   - 基準点表示
   - 面取りライン表示
   - 進入開始点ハイライト
@@ -119,9 +119,9 @@ nav_graph.xml の構成:
 ```
 
 **実装内容**:
-- [ ] ResultFragment.kt
-- [ ] fragment_result.xml
-- [ ] ChamferResult.kt (計算結果のdata class)
+- [x] ResultFragment.kt
+- [x] fragment_result.xml
+- [x] ChamferResult.kt (計算結果のdata class)
 
 ---
 
@@ -147,8 +147,8 @@ object ChamferCalculator {
 ```
 
 **実装内容**:
-- [ ] ChamferCalculator.kt
-- [ ] 各向きの角度計算ロジック
+- [x] ChamferCalculator.kt
+- [x] 各向きの角度計算ロジック
 - [ ] 単体テスト
 
 ---
@@ -181,8 +181,8 @@ class ToolPathViewModel : ViewModel() {
 ```
 
 **実装内容**:
-- [ ] ToolPathViewModel.kt
-- [ ] 既存MainViewModelからの履歴・設定機能の移行
+- [x] ToolPathViewModel.kt
+- [x] 既存MainViewModelからの履歴・設定機能の移行
 
 #### 4.2 データ層の更新
 
@@ -202,47 +202,51 @@ data class HistoryEntity(
 ```
 
 **実装内容**:
-- [ ] HistoryEntity の更新（マイグレーション）
-- [ ] 新しいシリアライザの実装
+- [x] HistoryEntity の更新（マイグレーション）
+- [x] 新しいシリアライザの実装
 
 ---
 
 ### Step 5: 既存コードのリファクタリング
 
 #### 5.1 削除するファイル
-- [ ] CalculatorFragment.kt (新画面に置き換え)
-- [ ] 旧レイアウトファイル
+- [x] CalculatorFragment.kt (新画面に置き換え)
+- [x] CoordinateCanvasView.kt (ChamferCanvasViewに置き換え)
+- [x] MainViewModel.kt (ToolPathViewModelに置き換え)
+- [x] 旧レイアウトファイル (fragment_calculator.xml, input_shape.xml)
 
 #### 5.2 継続利用するファイル
-- [ ] HistoryFragment.kt (微修正)
-- [ ] SettingsFragment.kt (そのまま)
-- [ ] CoordinateCanvasView.kt (拡張)
-- [ ] Repository.kt (そのまま)
-- [ ] AppDatabase.kt (マイグレーション追加)
+- [x] HistoryFragment.kt (微修正)
+- [x] SettingsFragment.kt (そのまま)
+- [x] Repository.kt (そのまま)
+- [x] AppDatabase.kt (マイグレーション追加)
 
 #### 5.3 修正するファイル
-- [ ] MainActivity.kt (ナビゲーション更新)
-- [ ] nav_graph.xml (全面書き換え)
-- [ ] strings.xml (新しい文字列追加)
-- [ ] HistoryAdapter.kt (新しい表示形式)
+- [x] MainActivity.kt (ナビゲーション更新)
+- [x] nav_graph.xml (全面書き換え)
+- [x] strings.xml (新しい文字列追加)
+- [x] HistoryAdapter.kt (新しい表示形式)
 
 ---
 
 ### Step 6: UIリソースの作成
 
 #### 6.1 Drawable
-- [ ] ic_chamfer_outer.xml (外角面取りアイコン)
-- [ ] ic_corner_top_left.xml (左上の角)
-- [ ] ic_corner_top_right.xml (右上の角)
-- [ ] ic_corner_bottom_left.xml (左下の角)
-- [ ] ic_corner_bottom_right.xml (右下の角)
+- [x] ic_chamfer_outer.xml (外角面取りアイコン)
+- [x] ic_chamfer_inner.xml (内角面取りアイコン - coming soon)
+- [x] ic_arc_approach.xml (円弧進入アイコン - coming soon)
+- [x] ic_corner_top_left.xml (左上の角)
+- [x] ic_corner_top_right.xml (右上の角)
+- [x] ic_corner_bottom_left.xml (左下の角)
+- [x] ic_corner_bottom_right.xml (右下の角)
+- [x] ic_copy.xml (コピーアイコン)
 
 #### 6.2 文字列リソース
-- [ ] シナリオ名
-- [ ] 方向名
-- [ ] 入力ラベル
-- [ ] ボタンテキスト
-- [ ] エラーメッセージ
+- [x] シナリオ名
+- [x] 方向名
+- [x] 入力ラベル
+- [x] ボタンテキスト
+- [x] エラーメッセージ
 
 ---
 
@@ -264,13 +268,12 @@ app/src/main/java/jp/dev/tanaka/coordinatecalculator/
 │   ├── result/
 │   │   ├── ResultFragment.kt
 │   │   └── ChamferResult.kt
-│   ├── history/
-│   │   ├── HistoryFragment.kt
-│   │   └── HistoryAdapter.kt
-│   ├── settings/
-│   │   └── SettingsFragment.kt
+│   ├── HistoryFragment.kt
+│   ├── HistoryAdapter.kt
+│   ├── SettingsFragment.kt
 │   ├── common/
-│   │   └── CoordinateCanvasView.kt
+│   │   └── ChamferCanvasView.kt
+│   ├── MainActivity.kt
 │   └── ToolPathViewModel.kt
 ├── data/
 │   ├── HistoryEntity.kt
@@ -281,8 +284,8 @@ app/src/main/java/jp/dev/tanaka/coordinatecalculator/
 │   └── Repository.kt
 ├── util/
 │   ├── ChamferCalculator.kt
-│   └── Geometry.kt (既存、継続利用)
-├── MainActivity.kt
+│   ├── Geometry.kt
+│   └── RoundingUtil.kt
 └── CoordinateCalculatorApp.kt
 ```
 
@@ -290,19 +293,19 @@ app/src/main/java/jp/dev/tanaka/coordinatecalculator/
 
 ## 実装順序
 
-| 順序 | タスク | 依存関係 |
-|------|--------|---------|
-| 1 | Scenario, CornerDirection, ChamferParameters 定義 | なし |
-| 2 | ChamferCalculator 実装 | 1 |
-| 3 | ToolPathViewModel 実装 | 1, 2 |
-| 4 | ScenarioSelectFragment 実装 | 1, 3 |
-| 5 | DirectionSelectFragment 実装 | 1, 3 |
-| 6 | ParameterInputFragment 実装 | 1, 3 |
-| 7 | ResultFragment 実装 | 1, 2, 3 |
-| 8 | ナビゲーション統合 | 4, 5, 6, 7 |
-| 9 | 履歴・設定の統合 | 8 |
-| 10 | UIリソース・文字列整備 | 9 |
-| 11 | テスト・デバッグ | 10 |
+| 順序 | タスク | 依存関係 | 状態 |
+|------|--------|---------|------|
+| 1 | Scenario, CornerDirection, ChamferParameters 定義 | なし | ✅完了 |
+| 2 | ChamferCalculator 実装 | 1 | ✅完了 |
+| 3 | ToolPathViewModel 実装 | 1, 2 | ✅完了 |
+| 4 | ScenarioSelectFragment 実装 | 1, 3 | ✅完了 |
+| 5 | DirectionSelectFragment 実装 | 1, 3 | ✅完了 |
+| 6 | ParameterInputFragment 実装 | 1, 3 | ✅完了 |
+| 7 | ResultFragment 実装 | 1, 2, 3 | ✅完了 |
+| 8 | ナビゲーション統合 | 4, 5, 6, 7 | ✅完了 |
+| 9 | 履歴・設定の統合 | 8 | ✅完了 |
+| 10 | UIリソース・文字列整備 | 9 | ✅完了 |
+| 11 | テスト・デバッグ | 10 | 🔄進行中 |
 
 ---
 
@@ -319,3 +322,4 @@ app/src/main/java/jp/dev/tanaka/coordinatecalculator/
 | 日付 | バージョン | 内容 |
 |------|-----------|------|
 | 2026-01-10 | 1.0 | 初版作成 |
+| 2026-01-10 | 1.1 | v2実装完了（外角面取り機能）、ビルド成功 |
