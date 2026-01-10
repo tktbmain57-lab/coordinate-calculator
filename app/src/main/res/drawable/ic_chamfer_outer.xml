@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- 外角の形状 -->
+    <path
+        android:pathData="M8,40 L8,20 L28,20"
+        android:strokeWidth="3"
+        android:strokeColor="#2196F3"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- 面取りライン -->
+    <path
+        android:pathData="M8,20 L20,32"
+        android:strokeWidth="2"
+        android:strokeColor="#FF9800"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- 進入ライン（点線） -->
+    <path
+        android:pathData="M20,32 L32,44"
+        android:strokeWidth="2"
+        android:strokeColor="#4CAF50"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- 角の点 -->
+    <path
+        android:pathData="M8,20 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"
+        android:fillColor="#2196F3" />
+
+    <!-- 進入点 -->
+    <path
+        android:pathData="M32,44 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"
+        android:fillColor="#4CAF50" />
+
+</vector>

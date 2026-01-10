@@ -4,41 +4,58 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.button.MaterialButton
+import jp.dev.tanaka.coordinatecalculator.CoordinateCalculatorApp
 import jp.dev.tanaka.coordinatecalculator.R
-import jp.dev.tanaka.coordinatecalculator.databinding.FragmentSettingsBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment() {
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: ToolPathViewModel by activityViewModels {
+        ToolPathViewModel.Factory((requireActivity().application as CoordinateCalculatorApp).repository)
+    }
+
+    private lateinit var decimalPlacesGroup: RadioGroup
+    private lateinit var radioDecimal1: RadioButton
+    private lateinit var radioDecimal2: RadioButton
+    private lateinit var radioDecimal3: RadioButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Observe decimal places
-        viewModel.decimalPlaces.observe(viewLifecycleOwner) { places ->
-            when (places) {
-                1 -> binding.radioDecimal1.isChecked = true
-                2 -> binding.radioDecimal2.isChecked = true
-                3 -> binding.radioDecimal3.isChecked = true
+        decimalPlacesGroup = view.findViewById(R.id.decimal_places_group)
+        radioDecimal1 = view.findViewById(R.id.radio_decimal_1)
+        radioDecimal2 = view.findViewById(R.id.radio_decimal_2)
+        radioDecimal3 = view.findViewById(R.id.radio_decimal_3)
+
+        // 設定を監視
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.settings.collectLatest { settings ->
+                when (settings.decimalPlaces) {
+                    1 -> radioDecimal1.isChecked = true
+                    2 -> radioDecimal2.isChecked = true
+                    3 -> radioDecimal3.isChecked = true
+                }
             }
         }
 
-        // Radio group listener
-        binding.decimalPlacesGroup.setOnCheckedChangeListener { _, checkedId ->
+        // ラジオグループのリスナー
+        decimalPlacesGroup.setOnCheckedChangeListener { _, checkedId ->
             val places = when (checkedId) {
                 R.id.radio_decimal_1 -> 1
                 R.id.radio_decimal_2 -> 2
@@ -48,8 +65,8 @@ class SettingsFragment : Fragment() {
             viewModel.updateDecimalPlaces(places)
         }
 
-        // Delete all history button
-        binding.btnDeleteAllHistory.setOnClickListener {
+        // 全履歴削除ボタン
+        view.findViewById<MaterialButton>(R.id.btn_delete_all_history).setOnClickListener {
             showDeleteAllConfirmation()
         }
     }
@@ -62,10 +79,5 @@ class SettingsFragment : Fragment() {
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

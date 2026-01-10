@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">交点座標計算</string>
+    <string name="app_name">ツールパス座標計算</string>
 
     <!-- Common -->
     <string name="ok">OK</string>
@@ -11,32 +11,49 @@
     <string name="calculate">計算</string>
     <string name="settings">設定</string>
     <string name="history">履歴</string>
+    <string name="coming_soon">準備中</string>
 
-    <!-- Input -->
-    <string name="input_line">直線</string>
-    <string name="input_circle">円/円弧</string>
-    <string name="point1">点1</string>
-    <string name="point2">点2</string>
-    <string name="center">中心</string>
-    <string name="radius">半径 R</string>
-    <string name="angle">角度</string>
-    <string name="x_coord">X</string>
-    <string name="y_coord">Y</string>
+    <!-- Scenario Selection -->
+    <string name="scenario_select_title">加工タイプを選択</string>
+    <string name="scenario_select_description">計算したい加工パターンを選んでください</string>
+    <string name="scenario_outer_chamfer_title">外角面取り</string>
+    <string name="scenario_outer_chamfer_desc">外側の角を面取りする際の進入点を計算</string>
+    <string name="scenario_inner_chamfer_title">内角面取り</string>
+    <string name="scenario_inner_chamfer_desc">内側の角を面取りする際の進入点を計算</string>
+    <string name="scenario_arc_approach_title">円弧進入</string>
+    <string name="scenario_arc_approach_desc">円弧に接線方向から進入する点を計算</string>
 
-    <!-- Shape Selection -->
-    <string name="shape_a">図形A</string>
-    <string name="shape_b">図形B</string>
-    <string name="line_two_points">直線（2点指定）</string>
-    <string name="line_point_angle">直線（1点+角度）</string>
-    <string name="circle">円</string>
+    <!-- Direction Selection -->
+    <string name="direction_select_title">角の向きを選択</string>
+    <string name="direction_select_description">面取りする角の向きを選んでください</string>
+    <string name="direction_top_left">左上</string>
+    <string name="direction_top_right">右上</string>
+    <string name="direction_bottom_left">左下</string>
+    <string name="direction_bottom_right">右下</string>
+
+    <!-- Parameter Input -->
+    <string name="parameter_input_title">パラメータ入力</string>
+    <string name="input_corner_coordinate">角の座標（基準点）</string>
+    <string name="input_chamfer_angle">面取り角度</string>
+    <string name="input_angle_custom">自由入力</string>
+    <string name="input_approach_distance">進入距離</string>
+    <string name="btn_calculate">計算する</string>
 
     <!-- Result -->
-    <string name="result">計算結果</string>
-    <string name="intersection_point">交点</string>
-    <string name="no_intersection">交点なし</string>
-    <string name="parallel_lines">直線が平行です</string>
-    <string name="tangent_point">接点</string>
-    <string name="select_point">交点を選択してください</string>
+    <string name="result_title">計算結果</string>
+    <string name="result_approach_point">進入開始点</string>
+    <string name="btn_copy">コピー</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_new_calculation">新しい計算</string>
+    <string name="btn_cancel">キャンセル</string>
+    <string name="copied_to_clipboard">クリップボードにコピーしました</string>
+    <string name="saved_to_history">履歴に保存しました</string>
+
+    <!-- Save Dialog -->
+    <string name="dialog_save_title">履歴に保存</string>
+    <string name="default_history_title">面取り計算</string>
+    <string name="title_hint">タイトル（任意）</string>
+    <string name="memo_hint">メモ（任意）</string>
 
     <!-- History -->
     <string name="history_empty">履歴がありません</string>
@@ -44,8 +61,6 @@
     <string name="delete_all_history">全履歴を削除</string>
     <string name="delete_confirm">この履歴を削除しますか？</string>
     <string name="delete_all_confirm">すべての履歴を削除しますか？</string>
-    <string name="title_hint">タイトル（任意）</string>
-    <string name="memo_hint">メモ（任意）</string>
 
     <!-- Settings -->
     <string name="decimal_places">小数点以下桁数</string>
@@ -55,12 +70,11 @@
 
     <!-- Errors -->
     <string name="error_invalid_input">入力値が不正です</string>
-    <string name="error_same_points">2点が同一です</string>
-    <string name="error_zero_radius">半径は0より大きい値を入力してください</string>
+    <string name="error_no_direction">向きが選択されていません</string>
+    <string name="error_invalid_coordinate">座標を正しく入力してください</string>
+    <string name="error_invalid_angle">角度は0°より大きく90°未満で入力してください</string>
+    <string name="error_invalid_approach">進入距離は0より大きい値を入力してください</string>
 
     <!-- Accessibility -->
     <string name="cd_canvas">座標キャンバス</string>
-    <string name="cd_zoom_in">拡大</string>
-    <string name="cd_zoom_out">縮小</string>
-    <string name="cd_reset_view">表示リセット</string>
 </resources>

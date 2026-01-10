@@ -2,25 +2,57 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/calculatorFragment">
+    app:startDestination="@id/scenarioSelectFragment">
 
+    <!-- シナリオ選択画面（ホーム） -->
     <fragment
-        android:id="@+id/calculatorFragment"
-        android:name="jp.dev.tanaka.coordinatecalculator.ui.CalculatorFragment"
+        android:id="@+id/scenarioSelectFragment"
+        android:name="jp.dev.tanaka.coordinatecalculator.ui.scenario.ScenarioSelectFragment"
         android:label="@string/app_name">
         <action
-            android:id="@+id/action_calculator_to_history"
+            android:id="@+id/action_scenario_to_direction"
+            app:destination="@id/directionSelectFragment" />
+        <action
+            android:id="@+id/action_scenario_to_history"
             app:destination="@id/historyFragment" />
         <action
-            android:id="@+id/action_calculator_to_settings"
+            android:id="@+id/action_scenario_to_settings"
             app:destination="@id/settingsFragment" />
     </fragment>
 
+    <!-- 向き選択画面 -->
+    <fragment
+        android:id="@+id/directionSelectFragment"
+        android:name="jp.dev.tanaka.coordinatecalculator.ui.direction.DirectionSelectFragment"
+        android:label="@string/direction_select_title">
+        <action
+            android:id="@+id/action_direction_to_parameter"
+            app:destination="@id/parameterInputFragment" />
+    </fragment>
+
+    <!-- パラメータ入力画面 -->
+    <fragment
+        android:id="@+id/parameterInputFragment"
+        android:name="jp.dev.tanaka.coordinatecalculator.ui.parameter.ParameterInputFragment"
+        android:label="@string/parameter_input_title">
+        <action
+            android:id="@+id/action_parameter_to_result"
+            app:destination="@id/resultFragment" />
+    </fragment>
+
+    <!-- 結果表示画面 -->
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="jp.dev.tanaka.coordinatecalculator.ui.result.ResultFragment"
+        android:label="@string/result_title" />
+
+    <!-- 履歴画面 -->
     <fragment
         android:id="@+id/historyFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.HistoryFragment"
         android:label="@string/history" />
 
+    <!-- 設定画面 -->
     <fragment
         android:id="@+id/settingsFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.SettingsFragment"

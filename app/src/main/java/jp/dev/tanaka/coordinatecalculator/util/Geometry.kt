@@ -247,4 +247,9 @@ object RoundingUtil {
             round(point.y, decimalPlaces)
         )
     }
+
+    fun format(value: Double, decimalPlaces: Int): String {
+        val rounded = round(value, decimalPlaces)
+        return "%.${decimalPlaces}f".format(rounded)
+    }
 }

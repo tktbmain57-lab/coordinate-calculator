@@ -4,50 +4,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import jp.dev.tanaka.coordinatecalculator.CoordinateCalculatorApp
 import jp.dev.tanaka.coordinatecalculator.R
-import jp.dev.tanaka.coordinatecalculator.databinding.FragmentHistoryBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
-    private var _binding: FragmentHistoryBinding? = null
-    private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: ToolPathViewModel by activityViewModels {
+        ToolPathViewModel.Factory((requireActivity().application as CoordinateCalculatorApp).repository)
+    }
+
     private lateinit var adapter: HistoryAdapter
+    private lateinit var historyList: RecyclerView
+    private lateinit var emptyText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        historyList = view.findViewById(R.id.history_list)
+        emptyText = view.findViewById(R.id.empty_text)
+
         adapter = HistoryAdapter(
-            decimalPlaces = viewModel.decimalPlaces.value ?: 2,
+            decimalPlaces = 2,
             onDeleteClick = { history ->
                 showDeleteConfirmation(history.id)
             }
         )
 
-        binding.historyList.layoutManager = LinearLayoutManager(requireContext())
-        binding.historyList.adapter = adapter
+        historyList.layoutManager = LinearLayoutManager(requireContext())
+        historyList.adapter = adapter
 
-        viewModel.historyList.observe(viewLifecycleOwner) { historyList ->
-            adapter.submitList(historyList)
-            binding.emptyText.visibility = if (historyList.isEmpty()) View.VISIBLE else View.GONE
-            binding.historyList.visibility = if (historyList.isEmpty()) View.GONE else View.VISIBLE
-        }
-
-        viewModel.decimalPlaces.observe(viewLifecycleOwner) { places ->
-            adapter.decimalPlaces = places
+        viewLifecycleOwner.lifecycleScope.launch {
+            combine(
+                viewModel.allHistory,
+                viewModel.settings
+            ) { history, settings ->
+                Pair(history, settings.decimalPlaces)
+            }.collectLatest { (historyData, decimalPlaces) ->
+                adapter.decimalPlaces = decimalPlaces
+                adapter.submitList(historyData)
+                emptyText.visibility = if (historyData.isEmpty()) View.VISIBLE else View.GONE
+                historyList.visibility = if (historyData.isEmpty()) View.GONE else View.VISIBLE
+            }
         }
     }
 
@@ -59,10 +74,5 @@ class HistoryFragment : Fragment() {
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
