@@ -2,9 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/scenarioSelectFragment">
+    app:startDestination="@id/simpleChamferFragment">
 
-    <!-- シナリオ選択画面（ホーム） -->
+    <!-- シンプル面取り計算画面（メイン） -->
+    <fragment
+        android:id="@+id/simpleChamferFragment"
+        android:name="jp.dev.tanaka.coordinatecalculator.ui.SimpleChamferFragment"
+        android:label="@string/app_name" />
+
+    <!-- 以下は一時的に無効化 -->
+    <!--
     <fragment
         android:id="@+id/scenarioSelectFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.scenario.ScenarioSelectFragment"
@@ -20,7 +27,6 @@
             app:destination="@id/settingsFragment" />
     </fragment>
 
-    <!-- 向き選択画面 -->
     <fragment
         android:id="@+id/directionSelectFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.direction.DirectionSelectFragment"
@@ -30,7 +36,6 @@
             app:destination="@id/parameterInputFragment" />
     </fragment>
 
-    <!-- パラメータ入力画面 -->
     <fragment
         android:id="@+id/parameterInputFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.parameter.ParameterInputFragment"
@@ -40,22 +45,20 @@
             app:destination="@id/resultFragment" />
     </fragment>
 
-    <!-- 結果表示画面 -->
     <fragment
         android:id="@+id/resultFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.result.ResultFragment"
         android:label="@string/result_title" />
 
-    <!-- 履歴画面 -->
     <fragment
         android:id="@+id/historyFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.HistoryFragment"
         android:label="@string/history" />
 
-    <!-- 設定画面 -->
     <fragment
         android:id="@+id/settingsFragment"
         android:name="jp.dev.tanaka.coordinatecalculator.ui.SettingsFragment"
         android:label="@string/settings" />
+    -->
 
 </navigation>
